@@ -13,5 +13,14 @@ export class Navbar {
   toggleTheme() {
     this.theme = this.theme === 'light' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', this.theme);
+    localStorage.setItem('theme',this.theme)
   }
+    constructor() {
+    const saved = localStorage.getItem('theme');
+    if (saved) {
+      this.theme = saved as 'light' | 'dark';
+      document.documentElement.setAttribute('data-theme', this.theme);
+    }
+  }
+
 }

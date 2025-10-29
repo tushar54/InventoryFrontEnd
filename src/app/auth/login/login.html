@@ -2,40 +2,32 @@
   <div
     class="card w-full max-w-md shadow-xl bg-base-100 border border-gray-200 rounded-xl p-6 sm:p-10"
   >
-    <!-- Logo / Title -->
+    <!-- Title -->
     <div class="text-center mb-6">
       <h1 class="text-3xl font-bold text-primary mb-2">Welcome Back</h1>
       <p class="text-gray-500">Login to your account</p>
     </div>
 
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="alert alert-error text-sm p-2 mb-3">
+      {{ errorMessage }}
+    </div>
+
     <!-- Login Form -->
-    <form class="space-y-5">
+    <form class="space-y-5" (ngSubmit)="login($event)">
       <!-- Email -->
       <div class="form-control">
         <label class="label">
           <span class="label-text font-medium">Email</span>
         </label>
-        <div class="relative">
-          <input
-            type="email"
-            placeholder="example@email.com"
-            class="input input-bordered w-full pr-10"
-          />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 absolute right-3 top-3 text-gray-400"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M16 12H8m8 0H8m8 0H8m0 0v8m0-8V4m0 8h8m-8 0H4"
-            />
-          </svg>
-        </div>
+        <input
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="example@email.com"
+          class="input input-bordered w-full"
+          required
+        />
       </div>
 
       <!-- Password -->
@@ -46,14 +38,18 @@
         <div class="relative">
           <input
             [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="password"
+            name="password"
             placeholder="********"
             class="input input-bordered w-full pr-10"
+            required
           />
           <button
             type="button"
             class="absolute right-2 top-2 text-gray-400"
             (click)="showPassword = !showPassword"
           >
+            <!-- eye toggle -->
             <svg
               *ngIf="!showPassword"
               xmlns="http://www.w3.org/2000/svg"
@@ -94,16 +90,7 @@
         </div>
       </div>
 
-      <!-- Remember Me & Forgot -->
-      <div class="flex justify-between items-center text-sm">
-        <label class="flex items-center gap-2">
-          <input type="checkbox" class="checkbox" />
-          Remember me
-        </label>
-        <a href="#" class="text-primary hover:underline">Forgot password?</a>
-      </div>
-
-      <!-- Submit Button -->
+      <!-- Submit -->
       <button
         type="submit"
         class="btn btn-primary w-full mt-2 hover:scale-105 transition-transform"
@@ -117,14 +104,8 @@
 
     <!-- Social Login -->
     <div class="flex gap-3 justify-center">
-      <button
-        class="btn btn-outline btn-primary btn-sm flex-1 hover:bg-primary hover:text-white transition"
-      >
-        Google
-      </button>
-      <button
-        class="btn btn-outline btn-secondary btn-sm flex-1 hover:bg-secondary hover:text-white transition"
-      >
+      <button class="btn btn-outline btn-primary btn-sm flex-1">Google</button>
+      <button class="btn btn-outline btn-secondary btn-sm flex-1">
         GitHub
       </button>
     </div>
@@ -132,7 +113,9 @@
     <!-- Signup Link -->
     <p class="text-center text-sm mt-4 text-gray-500">
       Don’t have an account?
-      <a routerLink="/register" class="text-primary font-medium hover:underline">Sign Up</a>
+      <a routerLink="/register" class="text-primary font-medium hover:underline">
+        Sign Up
+      </a>
     </p>
   </div>
 </div>

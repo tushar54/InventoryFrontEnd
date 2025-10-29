@@ -1,1 +1,208 @@
-<p>register works!</p>
+<div class="w-[1000px] mx-auto mt-5 min-h-screen flex items-center justify-center bg-base-200 px-4">
+  <div class="w-full shadow-xl bg-base-100 border border-gray-200 rounded-xl p-6 sm:p-10">
+    <!-- Header -->
+    <div class="text-center mb-6">
+      <h1 class="text-3xl font-bold text-primary mb-2">Create Account</h1>
+      <p class="text-gray-500">Join InventoryPro today 🚀</p>
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="alert alert-error text-sm p-2 mb-3">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Register Form -->
+    <form class="space-y-5" (ngSubmit)="register()" #registerForm="ngForm">
+      <!-- Full Name -->
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text font-medium">Full Name</span>
+        </label>
+        <input
+          type="text"
+          placeholder="John Doe"
+          class="input input-bordered w-full"
+          [(ngModel)]="name"
+          name="name"
+        />
+      </div>
+
+      <!-- Email -->
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text font-medium">Email</span>
+        </label>
+        <input
+          type="email"
+          placeholder="example@email.com"
+          class="input input-bordered w-full"
+          [(ngModel)]="email"
+          name="email"
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text font-medium">Password</span>
+        </label>
+        <div class="relative">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            placeholder="********"
+            class="input input-bordered w-full pr-10"
+            [(ngModel)]="password"
+            name="password"
+          />
+          <button
+            type="button"
+            class="absolute right-2 top-2 text-gray-400"
+            (click)="showPassword = !showPassword"
+          >
+            <svg
+              *ngIf="!showPassword"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+              />
+            </svg>
+            <svg
+              *ngIf="showPassword"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.944-9.543-7a10.05 10.05 0 012.478-4.425m2.707-1.544A9.953 9.953 0 0112 5c4.477 0 8.268 2.944 9.543 7a9.953 9.953 0 01-1.123 2.197M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text font-medium">Confirm Password</span>
+        </label>
+        <div class="relative">
+          <input
+            [type]="showConfirm ? 'text' : 'password'"
+            placeholder="********"
+            class="input input-bordered w-full pr-10"
+            [(ngModel)]="confirmPassword"
+            name="confirmPassword"
+          />
+          <button
+            type="button"
+            class="absolute right-2 top-2 text-gray-400"
+            (click)="showConfirm = !showConfirm"
+          >
+            <svg
+              *ngIf="!showConfirm"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+              />
+            </svg>
+            <svg
+              *ngIf="showConfirm"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.944-9.543-7a10.05 10.05 0 012.478-4.425m2.707-1.544A9.953 9.953 0 0112 5c4.477 0 8.268 2.944 9.543 7a9.953 9.953 0 01-1.123 2.197M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Terms Checkbox -->
+      <div class="form-control">
+        <label class="cursor-pointer flex items-center gap-2 text-sm">
+          <input
+            type="checkbox"
+            class="checkbox checkbox-primary"
+            [(ngModel)]="agreed"
+            name="agreed"
+          />
+          <span>
+            I agree to the
+            <a href="#" class="text-primary hover:underline">Terms & Conditions</a>
+          </span>
+        </label>
+      </div>
+
+      <!-- Submit -->
+      <button
+        type="submit"
+        class="btn btn-primary w-full mt-2 hover:scale-105 transition-transform"
+      >
+        Register
+      </button>
+    </form>
+
+    <!-- Divider -->
+    <div class="divider my-4">OR</div>
+
+    <!-- Social Signup -->
+    <div class="flex gap-3 justify-center">
+      <button
+        class="btn btn-outline btn-primary btn-sm flex-1 hover:bg-primary hover:text-white transition"
+      >
+        Google
+      </button>
+      <button
+        class="btn btn-outline btn-secondary btn-sm flex-1 hover:bg-secondary hover:text-white transition"
+      >
+        GitHub
+      </button>
+    </div>
+
+    <!-- Already have an account -->
+    <p class="text-center text-sm mt-4 text-gray-500">
+      Already have an account?
+      <a routerLink="/login" class="text-primary font-medium hover:underline">Login</a>
+    </p>
+  </div>
+</div>

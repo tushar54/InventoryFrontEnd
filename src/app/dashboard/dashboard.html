@@ -1,1 +1,10 @@
-<p>dashboard works!</p>
+<div class="grid grid-cols-10">
+  <div class="col-span-2">
+    <button routerLink="addProduct">Add Your Product</button>
+    <br />
+    <button routerLink="allProducts">All Product</button>
+  </div>
+  <div class="col-span-8">
+    <router-outlet></router-outlet>
+  </div>
+</div>
