@@ -1,0 +1,138 @@
+<div class="min-h-screen flex items-center justify-center bg-base-200 px-4">
+  <div
+    class="card w-full max-w-md shadow-xl bg-base-100 border border-gray-200 rounded-xl p-6 sm:p-10"
+  >
+    <!-- Logo / Title -->
+    <div class="text-center mb-6">
+      <h1 class="text-3xl font-bold text-primary mb-2">Welcome Back</h1>
+      <p class="text-gray-500">Login to your account</p>
+    </div>
+
+    <!-- Login Form -->
+    <form class="space-y-5">
+      <!-- Email -->
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text font-medium">Email</span>
+        </label>
+        <div class="relative">
+          <input
+            type="email"
+            placeholder="example@email.com"
+            class="input input-bordered w-full pr-10"
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 absolute right-3 top-3 text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 12H8m8 0H8m8 0H8m0 0v8m0-8V4m0 8h8m-8 0H4"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text font-medium">Password</span>
+        </label>
+        <div class="relative">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            placeholder="********"
+            class="input input-bordered w-full pr-10"
+          />
+          <button
+            type="button"
+            class="absolute right-2 top-2 text-gray-400"
+            (click)="showPassword = !showPassword"
+          >
+            <svg
+              *ngIf="!showPassword"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+              />
+            </svg>
+            <svg
+              *ngIf="showPassword"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.944-9.543-7a10.05 10.05 0 012.478-4.425m2.707-1.544A9.953 9.953 0 0112 5c4.477 0 8.268 2.944 9.543 7a9.953 9.953 0 01-1.123 2.197M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Remember Me & Forgot -->
+      <div class="flex justify-between items-center text-sm">
+        <label class="flex items-center gap-2">
+          <input type="checkbox" class="checkbox" />
+          Remember me
+        </label>
+        <a href="#" class="text-primary hover:underline">Forgot password?</a>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="btn btn-primary w-full mt-2 hover:scale-105 transition-transform"
+      >
+        Login
+      </button>
+    </form>
+
+    <!-- Divider -->
+    <div class="divider my-4">OR</div>
+
+    <!-- Social Login -->
+    <div class="flex gap-3 justify-center">
+      <button
+        class="btn btn-outline btn-primary btn-sm flex-1 hover:bg-primary hover:text-white transition"
+      >
+        Google
+      </button>
+      <button
+        class="btn btn-outline btn-secondary btn-sm flex-1 hover:bg-secondary hover:text-white transition"
+      >
+        GitHub
+      </button>
+    </div>
+
+    <!-- Signup Link -->
+    <p class="text-center text-sm mt-4 text-gray-500">
+      Don’t have an account?
+      <a routerLink="/register" class="text-primary font-medium hover:underline">Sign Up</a>
+    </p>
+  </div>
+</div>

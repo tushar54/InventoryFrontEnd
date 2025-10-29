@@ -1,0 +1,140 @@
+<nav
+  class="navbar bg-base-100 shadow-md sticky top-0 z-50 px-4 md:px-8 transition-all duration-300"
+>
+  <!-- Navbar Start -->
+  <div class="navbar-start">
+    <!-- Mobile Menu -->
+    <div class="dropdown">
+      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </div>
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-56 font-medium"
+      >
+        <li><a routerLink="/" class="hover:text-primary">Dashboard</a></li>
+        <li><a routerLink="/products" class="hover:text-primary">Products</a></li>
+        <li><a routerLink="/categories" class="hover:text-primary">Categories</a></li>
+        <li><a routerLink="/orders" class="hover:text-primary">Orders</a></li>
+        <li><a routerLink="/login" class="hover:text-primary">Login</a></li>
+      </ul>
+    </div>
+
+    <!-- Logo / Brand -->
+    <a
+      routerLink="/"
+      class="btn btn-ghost normal-case text-2xl font-extrabold text-primary hover:scale-105 transition-transform"
+    >
+      🏪 Inventory<span class="text-base-content">Pro</span>
+    </a>
+  </div>
+
+  <!-- Navbar Center -->
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal px-1 text-[16px] font-semibold">
+      <li><a routerLink="/" class="hover:text-primary">Dashboard</a></li>
+      <li><a routerLink="/products" class="hover:text-primary">Products</a></li>
+      <li><a routerLink="/categories" class="hover:text-primary">Categories</a></li>
+      <li><a routerLink="/orders" class="hover:text-primary">Orders</a></li>
+      <li><a routerLink="/login" class="hover:text-primary">Login</a></li>
+    </ul>
+  </div>
+
+  <!-- Navbar End -->
+  <div class="navbar-end flex items-center gap-3">
+    <!-- Search -->
+    <label
+      class="input input-bordered rounded-full hidden md:flex items-center gap-2 w-52 focus-within:ring focus-within:ring-primary/50"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-5 h-5 opacity-70"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1010.5 18a7.5 7.5 0 006.15-3.35z"
+        />
+      </svg>
+      <input type="text" placeholder="Search..." class="grow outline-none" />
+    </label>
+
+    <!-- Theme Toggle -->
+    <button
+      class="btn btn-square btn-ghost tooltip tooltip-bottom"
+      data-tip="Toggle Theme"
+      (click)="toggleTheme()"
+    >
+      <svg
+        *ngIf="theme === 'light'"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="w-5 h-5"
+      >
+        <circle cx="12" cy="12" r="5" />
+        <line x1="12" y1="1" x2="12" y2="3" />
+        <line x1="12" y1="21" x2="12" y2="23" />
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+        <line x1="1" y1="12" x2="3" y2="12" />
+        <line x1="21" y1="12" x2="23" y2="12" />
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+      </svg>
+      <svg
+        *ngIf="theme === 'dark'"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+        class="w-5 h-5"
+      >
+        <path
+          d="M21.752 15.002A9 9 0 0112 3v0a9 9 0 100 18 9 9 0 009.752-5.998z"
+        />
+      </svg>
+    </button>
+
+    <!-- Profile Dropdown -->
+    <div class="dropdown dropdown-end">
+      <div
+        tabindex="0"
+        role="button"
+        class="btn btn-ghost btn-circle avatar hover:ring hover:ring-primary/40"
+      >
+        <div class="w-10 rounded-full overflow-hidden">
+          <img alt="User avatar" src="https://i.pravatar.cc/100?img=12" />
+        </div>
+      </div>
+      <ul
+        tabindex="0"
+        class="mt-3 p-2 shadow-lg menu menu-sm dropdown-content bg-base-100 rounded-box w-56"
+      >
+        <li><a class="hover:bg-primary hover:text-white">Profile</a></li>
+        <li><a class="hover:bg-primary hover:text-white">Settings</a></li>
+        <li><a class="hover:bg-error hover:text-white">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
