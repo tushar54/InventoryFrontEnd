@@ -10,10 +10,8 @@ import { AddProduct } from './dashboard/add-product/add-product';
 import { Allproduct } from './dashboard/allproduct/allproduct';
 
 export const routes: Routes = [
-  { path: '', component: Home },
-  { path: 'login', component: Login },
-  { path: 'register', component: Register },
-  {
+  { path: '', component: Home,children:[
+    {
     path: 'dashboard',
     component: Dashboard,
     canActivate: [AuthGuard],
@@ -22,4 +20,8 @@ export const routes: Routes = [
       { path: 'addProduct', component: AddProduct },
     ],
   },
+  ] },
+  { path: 'login', component: Login },
+  { path: 'register', component: Register },
+  
 ];

@@ -1,60 +1,47 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+interface LoginResponse {
+  token: string;
+  email: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private users: any[] = [];
-  private loggedInUser: any = null;
+  private apiUrl = 'https://inventorybackend-9b01.onrender.com/api/auth'; // replace with your backend URL
 
-  constructor() {
-    // Load users from localStorage when app starts
-    const storedUsers = localStorage.getItem('users');
-    this.users = storedUsers ? JSON.parse(storedUsers) : [];
+  constructor(private http: HttpClient) {}
+
+  // ✅ Register user
+  register(data: { name: string; email: string; password: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, data);
   }
 
-  // ✅ Register new user
-  register(data: { name: string; email: string; password: string }) {
-    const existingUser = this.users.find(u => u.email === data.email);
-
-    if (existingUser) {
-      throw new Error('User already exists!');
-    }
-
-    this.users.push(data);
-    localStorage.setItem('users', JSON.stringify(this.users));
+  // ✅ Login user
+  login(data: { email: string; password: string }): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, data);
   }
 
-  // ✅ Login existing user
- login(email: string, password: string): boolean {
-  const users = JSON.parse(localStorage.getItem('users') || '[]');
-  const user = users.find((u: any) => u.email === email && u.password === password);
-  
-  if (user) {
-    localStorage.setItem('loggedInUser', JSON.stringify(user));
-    return true;
+  // ✅ Save JWT token
+  saveToken(token: string) {
+    localStorage.setItem('jwt_token', token);
   }
-  return false;
-}
 
+  // ✅ Get token
+  getToken(): string | null {
+    return localStorage.getItem('jwt_token');
+  }
 
-  // ✅ Get current logged-in user
-  getUser() {
-    if (!this.loggedInUser) {
-      const stored = localStorage.getItem('loggedInUser');
-      this.loggedInUser = stored ? JSON.parse(stored) : null;
-    }
-    return this.loggedInUser;
+  // ✅ Check if user is logged in
+  isLoggedIn(): boolean {
+    return !!this.getToken();
   }
 
   // ✅ Logout
   logout() {
-    this.loggedInUser = null;
-    localStorage.removeItem('loggedInUser');
-  }
-
-  // ✅ Get all users (for admin or debugging)
-  getAllUsers() {
-    return this.users;
+    localStorage.removeItem('jwt_token');
   }
 }

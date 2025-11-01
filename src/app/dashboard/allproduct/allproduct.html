@@ -1,1 +1,100 @@
-<p>allproduct works!</p>
+<div class="max-w-6xl mx-auto mt-10 p-6 bg-base-100 rounded-xl shadow-xl">
+  <h2 class="text-2xl font-bold text-primary mb-6 text-center">🛍️ My Products</h2>
+
+  <!-- Search, Filter & Sort -->
+  <div class="flex flex-wrap justify-between items-center gap-4 mb-6">
+    <input type="text" placeholder="Search by name or category..."
+           [(ngModel)]="searchTerm" (input)="applyFilters()"
+           class="input input-bordered w-full sm:w-1/3" />
+
+    <select [(ngModel)]="selectedCategory" (change)="applyFilters()"
+            class="select select-bordered w-full sm:w-1/4">
+      <option value="all">All Categories</option>
+      <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+    </select>
+
+    <select [(ngModel)]="sortBy" (change)="applyFilters()"
+            class="select select-bordered w-full sm:w-1/4">
+      <option value="name">Sort by Name</option>
+      <option value="price">Sort by Price</option>
+      <option value="quantity">Sort by Quantity</option>
+    </select>
+
+    <!-- Export CSV -->
+    <button class="btn btn-primary sm:w-auto" (click)="exportToCSV()">Export CSV</button>
+  </div>
+
+  <!-- No products -->
+  <div *ngIf="filteredProducts.length === 0" class="text-center text-gray-500">
+    No products found. Add some from your dashboard!
+  </div>
+
+  <!-- Product Table -->
+  <div *ngIf="filteredProducts.length > 0" class="overflow-x-auto">
+    <table class="table table-zebra w-full">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of paginatedProducts; let i = index">
+          <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+          <td>
+            <img [src]="product.image || product.imagePreview" class="w-16 h-16 object-cover rounded" />
+          </td>
+
+          <td *ngIf="editingIndex !== (currentPage - 1) * itemsPerPage + i">{{ product.name }}</td>
+          <td *ngIf="editingIndex === (currentPage - 1) * itemsPerPage + i">
+            <input type="text" [(ngModel)]="product.name" class="input input-bordered w-full" />
+          </td>
+
+          <td *ngIf="editingIndex !== (currentPage - 1) * itemsPerPage + i">{{ product.description }}</td>
+          <td *ngIf="editingIndex === (currentPage - 1) * itemsPerPage + i">
+            <textarea [(ngModel)]="product.description" class="textarea textarea-bordered w-full"></textarea>
+          </td>
+
+          <td *ngIf="editingIndex !== (currentPage - 1) * itemsPerPage + i">{{ product.category }}</td>
+          <td *ngIf="editingIndex === (currentPage - 1) * itemsPerPage + i">
+            <input type="text" [(ngModel)]="product.category" class="input input-bordered w-full" />
+          </td>
+
+          <td *ngIf="editingIndex !== (currentPage - 1) * itemsPerPage + i">{{ product.quantity }}</td>
+          <td *ngIf="editingIndex === (currentPage - 1) * itemsPerPage + i">
+            <input type="number" [(ngModel)]="product.quantity" class="input input-bordered w-full" />
+          </td>
+
+          <td *ngIf="editingIndex !== (currentPage - 1) * itemsPerPage + i">${{ product.price }}</td>
+          <td *ngIf="editingIndex === (currentPage - 1) * itemsPerPage + i">
+            <input type="number" [(ngModel)]="product.price" class="input input-bordered w-full" />
+          </td>
+
+          <td>
+            <div *ngIf="editingIndex !== (currentPage - 1) * itemsPerPage + i" class="flex gap-2">
+              <button class="btn btn-sm btn-accent" (click)="startEdit(i)">Edit</button>
+              <button class="btn btn-sm btn-error" (click)="deleteProduct(i)">Delete</button>
+            </div>
+            <div *ngIf="editingIndex === (currentPage - 1) * itemsPerPage + i" class="flex gap-2">
+              <button class="btn btn-sm btn-primary" (click)="saveEdit(i)">Save</button>
+              <button class="btn btn-sm btn-ghost" (click)="cancelEdit()">Cancel</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="flex justify-center items-center gap-3 mt-6" *ngIf="totalPages() > 1">
+    <button class="btn btn-sm" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Prev</button>
+    <span class="font-semibold">Page {{ currentPage }} / {{ totalPages() }}</span>
+    <button class="btn btn-sm" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages()">Next</button>
+  </div>
+</div>
