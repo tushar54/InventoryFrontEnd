@@ -7,13 +7,12 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-// Serve static files from Angular dist folder
-const distPath = path.join(__dirname, "dist/Inventory_FrontEnd");
-app.use(express.static(distPath));
+// Serve Angular build files
+app.use(express.static(path.join(__dirname, "dist/inventory-front-end")));
 
-// Handle all other routes (MUST be '*' not '/*' in Express v5)
-app.get("*", (req, res) => {
-  res.sendFile(path.join(distPath, "index.html"));
+// Redirect all routes to index.html
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist/inventory-front-end/index.html"));
 });
 
 const PORT = process.env.PORT || 8080;
