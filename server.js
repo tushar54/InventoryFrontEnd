@@ -7,15 +7,12 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-// Correct path to Angular build
-const distPath = path.join(__dirname, "dist/Inventory_FrontEnd");
+// Serve Angular build files
+app.use(express.static(path.join(__dirname, "dist/Inventory_FrontEnd")));
 
-// Serve static files
-app.use(express.static(distPath));
-
-// Catch all routes
-app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(distPath, "index.html"));
+// Redirect all routes to index.html
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist/Inventory_FrontEnd/index.html"));
 });
 
 const PORT = process.env.PORT || 8080;

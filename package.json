@@ -1,6 +1,7 @@
 {
   "name": "inventory-front-end",
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
@@ -8,7 +9,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  "type": "module",
+
   "prettier": {
     "printWidth": 100,
     "singleQuote": true,
