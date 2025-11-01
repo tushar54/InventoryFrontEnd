@@ -10,7 +10,7 @@ const app = express();
 // Serve Angular static files
 app.use(express.static(path.join(__dirname, "dist/inventory-front-end")));
 
-app.get("/*", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist/inventory-front-end/index.html"));
 });
 
