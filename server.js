@@ -8,10 +8,10 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 // Serve Angular static files
-app.use(express.static(path.join(__dirname, "dist/inventory-front-end")));
+app.use(express.static(path.join(__dirname, "dist/inventory-front-end/browser")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist/inventory-front-end/index.html"));
+  res.sendFile(path.join(__dirname, "dist/inventory-front-end/browser/index.html"));
 });
 
 const PORT = process.env.PORT || 8080;
