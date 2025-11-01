@@ -11,9 +11,10 @@ const app = express();
 app.use(express.static(path.join(__dirname, "dist/inventory_FrontEnd/browser")));
 
 // Redirect all routes to index.html
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist/inventory_FrontEnd/index.html"));
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(__dirname, "dist/inventory_FrontEnd/browser/index.html"));
 });
+
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
