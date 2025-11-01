@@ -10,8 +10,8 @@ const app = express();
 // Serve Angular build files
 app.use(express.static(path.join(__dirname, "dist/Inventory_FrontEnd")));
 
-// Redirect all routes to index.html
-app.get("*", (req, res) => {
+// Catch-all route for Angular routing
+app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist/Inventory_FrontEnd/index.html"));
 });
 
