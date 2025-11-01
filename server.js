@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 // Correct path to Angular build
-const distPath = path.join(__dirname, "dist/inventory_FrontEnd");
+const distPath = path.join(__dirname, "dist/Inventory_FrontEnd");
 
 // Serve static files
 app.use(express.static(distPath));
